@@ -1,0 +1,4 @@
+#ifndef __LINKED_CIRCULAR_HH__
+#define __LINKED_CIRCULAR_HH__
+
+#endif __LINKED_CIRCULAR_HH__ // __LINKED_CIRCULAR_HH__
