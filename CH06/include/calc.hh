@@ -6,8 +6,11 @@
 
 class Calculator {
 private: 
-    using OperatorStack = LinkedListStack<char>;
-    using OperandStack = LinkedListStack<int>;
+    template <typename T>
+    using Stack = LinkedListStack<T>;
+
+    using OperatorStack = Stack<char>;
+    using OperandStack = Stack<int>;
 
     bool is_operator(char c);
     bool is_operand(char c);
