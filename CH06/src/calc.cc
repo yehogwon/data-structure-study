@@ -23,6 +23,10 @@ int Calculator::operator_precedence(char c) {
     return -1;
 }
 
+int Calculator::intify(char c) {
+    return c - '0';
+}
+
 std::string Calculator::infix_to_postfix(std::string expression) {
     OperatorStack stack;
     std::string postfix;
@@ -52,5 +56,22 @@ std::string Calculator::infix_to_postfix(std::string expression) {
 }
 
 float Calculator::calculate(std::string expression) {
+    OperandStack stack;
     std::string postfix = infix_to_postfix(expression);
+
+    for (char c : postfix) {
+        if (is_operand(c)) stack.push(intify(c));
+        else if (is_operator(c)) {
+            int op1 = stack.pop(), op2 = stack.pop();
+            switch (c) {
+                case '+': stack.push(op2 + op1); break;
+                case '-': stack.push(op2 - op1); break;
+                case '*': stack.push(op2 * op1); break;
+                case '/': stack.push(op2 / op1); break;
+            }
+        } else throw std::invalid_argument("Invalid token");
+    }
+
+    if (stack.empty()) throw std::invalid_argument("Invalid expression");
+    return stack.pop();
 }

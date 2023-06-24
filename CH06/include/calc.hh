@@ -7,10 +7,12 @@
 class Calculator {
 private: 
     using OperatorStack = LinkedListStack<char>;
+    using OperandStack = LinkedListStack<int>;
 
     bool is_operator(char c);
     bool is_operand(char c);
     int operator_precedence(char c);
+    int intify(char c);
 
     std::string infix_to_postfix(std::string expression);
 public: 
