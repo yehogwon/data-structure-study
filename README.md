@@ -1,5 +1,7 @@
 # A repository for learning data structures in C/C++
 
+[![Build and Test](https://github.com/yehogwon/data-structure-study/actions/workflows/cmake-ci.yml/badge.svg)](https://github.com/yehogwon/data-structure-study/actions/workflows/cmake-ci.yml)
+
 ## Overview
 
 Let's learn data structures with Yoon's book. 
