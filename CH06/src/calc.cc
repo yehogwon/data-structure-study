@@ -38,15 +38,15 @@ std::string Calculator::infix_to_postfix(std::string expression) {
                 case ')': 
                     while (!stack.empty() && stack.peek() != '(')
                         postfix += stack.pop();
+                    stack.pop();
                     break;
                 default: // all other operators
                     while (!stack.empty() && operator_precedence(stack.peek()) >= operator_precedence(token))
                         postfix += stack.pop();
+                    stack.push(token);
                     break;
             }
-        } else {
-            throw std::invalid_argument("Invalid token");
-        }
+        } else throw std::invalid_argument("Invalid token");
     }
 
     // flush the stack to the postfix string
