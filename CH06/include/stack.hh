@@ -48,6 +48,10 @@ private:
 public: 
     LinkedListStack() : top(nullptr) {}
 
+    ~LinkedListStack() {
+        while (!empty()) pop();
+    }
+
     void push(T val) {
         top = new Node(val, top);
     }
