@@ -2,6 +2,7 @@
 #define __CALC_HH__
 
 #include <string>
+#include <stdexcept>
 #include "stack.hh"
 
 class Calculator {

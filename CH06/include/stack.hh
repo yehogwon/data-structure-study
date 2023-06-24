@@ -1,7 +1,7 @@
 #ifndef __STACK_HH__
 #define __STACK_HH__
 
-#include <exception>
+#include <stdexcept>
 
 const int MAX_LENGTH = 1000;
 
