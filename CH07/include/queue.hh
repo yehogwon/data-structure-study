@@ -3,6 +3,46 @@
 
 #include <stdexcept>
 
+const int MAX_LENGTH = 1000;
+
+template <typename T>
+class ArrayQueue {
+private: 
+    T data[MAX_LENGTH];
+    int front, rear;
+    
+    int index(int i) {
+        return i % MAX_LENGTH;
+    }
+
+    int& next(int &i) {
+        return i = index(i + 1);
+    }
+
+public: 
+    ArrayQueue() : front(0), rear(0) {}
+
+    void enqueue(T data) {
+        if (index(rear + 1) == index(front)) throw std::out_of_range("The queue is full.");
+        this->data[next(rear)] = data;
+    }
+
+    T dequeue() {
+        T val = peek();
+        next(front);
+        return val;
+    }
+
+    T peek() {
+        if (empty()) throw std::out_of_range("The queue is empty.");
+        return this->data[index(front + 1)];
+    }
+
+    bool empty() {
+        return index(front) == index(rear);
+    }
+};
+
 template <typename T>
 class LinkedListQueue {
 private: 
