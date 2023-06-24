@@ -35,6 +35,9 @@ std::string Calculator::infix_to_postfix(std::string expression) {
         if (is_operand(token)) postfix += token;
         else if (is_operator(token)) {
             switch (token) {
+                case '(': 
+                    stack.push(token);
+                    break;
                 case ')': 
                     while (!stack.empty() && stack.peek() != '(')
                         postfix += stack.pop();
