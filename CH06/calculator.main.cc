@@ -7,7 +7,7 @@ int main() {
     std::string expressions[] = {
         "1+2*3", 
         "(1+2)*3", 
-        "((1-2)+3)*(5-2)" // FIXME: this case causes an exception: "std::out_of_range: The stack is empty."
+        "((1-2)+3)*(5-2)"
     };
 
     std::cout << expressions[0] << " = " << calculator.calculate(expressions[0]) << "\n";
