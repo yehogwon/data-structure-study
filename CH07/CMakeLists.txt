@@ -4,3 +4,4 @@ include_directories(${CH07_ROOT}/include)
 
 add_executable(queue.main.out queue.main.cc)
 add_executable(hamburger.main.out hamburger.main.cc)
+add_executable(deque.main.out deque.main.cc)
