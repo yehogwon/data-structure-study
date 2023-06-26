@@ -8,5 +8,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_subdirectory(CH02)
 add_subdirectory(CH03)
 add_subdirectory(CH04)
+<<<<<<< HEAD
 add_subdirectory(CH06)
 add_subdirectory(CH07)
+=======
+add_subdirectory(CH05)
+>>>>>>> dev/ch05
