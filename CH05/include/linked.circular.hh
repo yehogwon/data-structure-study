@@ -17,26 +17,19 @@ private:
     int n_data;
 
     bool get(T &value) {
-        return false;
+        if (!tail) return false;
+        value = cur->data;
+        return true;
     }
 public:
     CircularLinkedList() : tail(nullptr), prev(nullptr), cur(nullptr), n_data(0) {}
 
     ~CircularLinkedList() {
-        Node *p = tail->next; // head
-        while (p != tail) {
-            Node *next = p->next;
-            delete p;
-            p = next;
-        }
-        delete tail;
     }
 
-    void insert(T value) {
-        Node *on = tail;
+    void insert_rear(T value) {
         Node *p = new Node(value);
-        
-        if (on == nullptr) {
+        if (tail == nullptr) { // empty
             tail = p;
             tail->next = p;
         } else {
@@ -44,25 +37,52 @@ public:
             tail->next = p;
             tail = p;
         }
+        n_data++;
     }
 
     void insert_front(T value) {
-        // TODO: implement here
+        Node *p = new Node(value);
+        if (tail == nullptr) { // empty
+            tail = p;
+            tail->next = p;
+        } else {
+            p->next = tail->next;
+            tail->next = p;
+        }
+        n_data++;
     }
 
     bool first(T &value) {
-        // TODO: implement here
+        prev = tail, cur = tail->next;
+        return get(value);
     }
 
     bool next(T &value) {
-        // TODO: implement here
+        prev = cur, cur = cur->next;
+        return get(value);
     }
 
-    T remove();
+    T remove() {
+        Node *p = cur;
+        T value = cur->data;
+        if (cur == tail) {
+            if (tail == tail->next) tail = nullptr;
+            else tail = prev;
+        }
+        prev->next = prev->next->next;
+        cur = prev;
+        delete p;
+        n_data--;
+        return value;
+    }
 
     int count() {
         return n_data;
     }
+
+    bool empty() {
+        return n_data == 0;
+    }
 };
 
-#endif __LINKED_CIRCULAR_HH__ // __LINKED_CIRCULAR_HH__
+#endif // __LINKED_CIRCULAR_HH__
