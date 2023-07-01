@@ -36,6 +36,10 @@ int intify(char c) {
     return c - '0';
 }
 
+std::string stringify(char c) {
+    return std::string(1, c);
+}
+
 float numberify(const std::string::const_iterator &begin, const std::string::const_iterator &end) {
     float number = 0;
     int decimal = 0;
@@ -57,4 +61,45 @@ float numberify(const std::string::const_iterator &begin, const std::string::con
         }
     }
     return number;
+}
+
+std::vector<std::string> infix_to_postfix(const std::string &expression) {
+    OperatorStack stack;
+    std::vector<std::string> postfix;
+
+    std::string cur = "";
+    for (int i = 0; i < expression.size(); i++) {
+        char token = expression[i];
+        if (is_float(token)) {
+            cur += token;
+        } else if (is_operator(token)) {
+            if (cur != "") {
+                postfix.push_back(cur);
+                cur = "";
+            }
+            switch (token) {
+                case '(': 
+                    stack.push(token);
+                    break;
+                case ')': 
+                    while (!stack.empty() && stack.peek() != '(')
+                        postfix.push_back(stringify(stack.pop()));
+                    stack.pop();
+                    break;
+                default: // all other operators
+                    while (!stack.empty() && operator_precedence(stack.peek()) >= operator_precedence(token))
+                        postfix.push_back(stringify(stack.pop()));
+                    stack.push(token);
+                    break;
+            }
+        } else throw std::invalid_argument(std::string("Invalid token: ") + token);
+    }
+    if (cur != "") {
+        postfix.push_back(cur);
+        cur = "";
+    }
+
+    while (!stack.empty()) postfix.push_back(stringify(stack.pop()));
+    
+    return postfix;
 }
