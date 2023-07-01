@@ -24,6 +24,6 @@ float numberify(const std::string::const_iterator &begin, const std::string::con
 
 std::vector<std::string> infix_to_postfix(const std::string &expression);
 nodeptr<std::string> postfix_to_tree(const std::vector<std::string> &expression);
-// float calculate(const nodeptr<?> &root);
+float evaluate(nodeptr<std::string> root);
 
 #endif // __TREE_CALC_HH__

@@ -119,3 +119,16 @@ nodeptr<std::string> postfix_to_tree(const std::vector<std::string> &expression)
 
     return stack.pop();
 }
+
+float evaluate(nodeptr<std::string> root) {
+    if (root->left == nullptr && root->right == nullptr) return numberify(root->data.begin(), root->data.end());
+
+    float op1 = evaluate(root->left), op2 = evaluate(root->right);
+    switch (root->data[0]) {
+        case '+': return op1 + op2;
+        case '-': return op1 - op2;
+        case '*': return op1 * op2;
+        case '/': return op1 / op2;
+        default: throw std::invalid_argument(std::string("Invalid operator: ") + root->data[0]);
+    }
+}
