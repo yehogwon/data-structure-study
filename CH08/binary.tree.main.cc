@@ -1,10 +1,8 @@
 #include <iostream>
 #include "binary.tree.hh"
 
-using inodeptr = nodeptr<int>;
-
 int main() {
-    inodeptr bt1 = create_node<int>(), bt2 = create_node<int>(), bt3 = create_node<int>(), bt4 = create_node<int>();
+    nodeptr<int> bt1, bt2, bt3, bt4;
 
     bt1->data = 1;
     bt2->data = 2;

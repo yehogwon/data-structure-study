@@ -22,9 +22,4 @@ struct __BinaryTreeNode {
     __BinaryTreeNode(T data, nodeptr<T> *left=nullptr, nodeptr<T> *right=nullptr) : data(data), left(left), right(right) {}
 };
 
-template <typename T>
-nodeptr<T> create_node() {
-    return nodeptr<T>(new __BinaryTreeNode<T>);
-}
-
 #endif // __BINARY_TREE_HH__
