@@ -103,3 +103,19 @@ std::vector<std::string> infix_to_postfix(const std::string &expression) {
     
     return postfix;
 }
+
+nodeptr<std::string> postfix_to_tree(const std::vector<std::string> &expression) {
+    TreeStack stack;
+
+    for (const std::string &token : expression) {
+        nodeptr<std::string> ptr = new node<std::string>(token);
+        if (is_operator(token[0])) {
+            nodeptr<std::string> right_ = stack.pop(), left_ = stack.pop();
+            ptr->left = left_;
+            ptr->right = right_;
+        }
+        stack.push(ptr);
+    }
+
+    return stack.pop();
+}
