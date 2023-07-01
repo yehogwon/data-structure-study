@@ -1,0 +1,29 @@
+#include <iostream>
+#include "binary.tree.hh"
+#include "binary.tree.traverse.hh"
+
+int main() {
+    nodeptr<int> bt1, bt2, bt3, bt4, bt5, bt6;
+
+    bt1->data = 1;
+    bt2->data = 2;
+    bt3->data = 3;
+    bt4->data = 4;
+    bt5->data = 5;
+    bt6->data = 6;
+    
+    bt1->left = bt2;
+    bt1->right = bt3;
+    bt2->left = bt4;
+    bt2->right = bt5;
+    bt3->right = bt6;
+
+    std::cout << " == Preorder traverse == " << std::endl;
+    preorder_traverse<int>(bt1, [](int &data) { std::cout << data << std::endl; });
+    std::cout << " == Inorder traverse == " << std::endl;
+    inorder_traverse<int>(bt1, [](int &data) { std::cout << data << std::endl; });
+    std::cout << " == Postorder traverse == " << std::endl;
+    postorder_traverse<int>(bt1, [](int &data) { std::cout << data << std::endl; });
+
+    return 0;
+}
