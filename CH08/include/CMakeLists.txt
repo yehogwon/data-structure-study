@@ -1,1 +1,0 @@
-include_directories(${CH06_ROOT}/include)

@@ -1,3 +1,4 @@
+include_directories(${CH06_ROOT}/include)
 include_directories(${CH08_ROOT}/include)
 add_subdirectory(src)
 
