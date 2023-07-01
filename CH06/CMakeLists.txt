@@ -1,5 +1,3 @@
-set(CH06_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
-
 add_subdirectory(src)
 
 include_directories(${CH06_ROOT}/include)
