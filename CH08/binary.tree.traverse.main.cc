@@ -3,7 +3,7 @@
 #include "binary.tree.traverse.hh"
 
 int main() {
-    node<int> *bt1 = new node<int>, *bt2 = new node<int>, *bt3 = new node<int>, *bt4 = new node<int>, *bt5 = new node<int>, *bt6 = new node<int>;
+    nodeptr<int> bt1 = new node<int>, bt2 = new node<int>, bt3 = new node<int>, bt4 = new node<int>, bt5 = new node<int>, bt6 = new node<int>;
 
     bt1->data = 1;
     bt2->data = 2;

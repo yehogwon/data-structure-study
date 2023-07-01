@@ -14,4 +14,7 @@ struct node {
     }
 };
 
+template <typename T>
+using nodeptr = node<T>*;
+
 #endif // __BINARY_TREE_HH__
