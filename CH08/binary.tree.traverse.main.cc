@@ -3,7 +3,7 @@
 #include "binary.tree.traverse.hh"
 
 int main() {
-    nodeptr<int> bt1, bt2, bt3, bt4, bt5, bt6;
+    node<int> *bt1 = new node<int>, *bt2 = new node<int>, *bt3 = new node<int>, *bt4 = new node<int>, *bt5 = new node<int>, *bt6 = new node<int>;
 
     bt1->data = 1;
     bt2->data = 2;
@@ -24,6 +24,8 @@ int main() {
     inorder_traverse<int>(bt1, [](int &data) { std::cout << data << std::endl; });
     std::cout << " == Postorder traverse == " << std::endl;
     postorder_traverse<int>(bt1, [](int &data) { std::cout << data << std::endl; });
+
+    delete bt1;
 
     return 0;
 }

@@ -2,7 +2,7 @@
 #include "binary.tree.hh"
 
 int main() {
-    nodeptr<int> bt1, bt2, bt3, bt4;
+    node<int> *bt1 = new node<int>, *bt2 = new node<int>, *bt3 = new node<int>, *bt4 = new node<int>;
 
     bt1->data = 1;
     bt2->data = 2;
@@ -23,6 +23,8 @@ int main() {
 
     std::cout << bt1->left->data << std::endl;
     std::cout << bt1->left->left->data << std::endl;
+
+    delete bt1;
 
     return 0;
 }

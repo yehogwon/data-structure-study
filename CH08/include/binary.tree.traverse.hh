@@ -4,7 +4,7 @@
 #include <functional>
 
 template <typename T>
-void preorder_traverse(nodeptr<T> &root, std::function<void(T&)> visit) {
+void preorder_traverse(node<T> *root, std::function<void(T&)> visit) {
     if (!root) return;
     visit(root->data);
     preorder_traverse(root->left, visit);
@@ -12,7 +12,7 @@ void preorder_traverse(nodeptr<T> &root, std::function<void(T&)> visit) {
 }
 
 template <typename T>
-void inorder_traverse(nodeptr<T> &root, std::function<void(T&)> visit) {
+void inorder_traverse(node<T> *root, std::function<void(T&)> visit) {
     if (!root) return;
     inorder_traverse(root->left, visit);
     visit(root->data);
@@ -20,7 +20,7 @@ void inorder_traverse(nodeptr<T> &root, std::function<void(T&)> visit) {
 }
 
 template <typename T>
-void postorder_traverse(nodeptr<T> &root, std::function<void(T&)> visit) {
+void postorder_traverse(node<T> *root, std::function<void(T&)> visit) {
     if (!root) return;
     postorder_traverse(root->left, visit);
     postorder_traverse(root->right, visit);
