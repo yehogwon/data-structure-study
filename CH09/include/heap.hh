@@ -131,25 +131,25 @@ public:
     ComparisonHeap(std::function<bool(const data_type&, const data_type&)> compare) : Heap<data_type, element_type>(), compare_(compare) {}
 
     void insert(data_type value) {
-        int index = ++(this->n_data);
+        int index = ++Heap<data_type, element_type>::n_data;
         element_type elem = element_type(value, compare_);
-        while (index > 1 && elem < (this->data)[this->parent(index)]) {
-            (this->data)[index] = (this->data)[this->parent(index)];
-            index = this->parent(index);
+        while (index > 1 && elem < Heap<data_type, element_type>::data[Heap<data_type, element_type>::parent(index)]) {
+            Heap<data_type, element_type>::data[index] = Heap<data_type, element_type>::data[Heap<data_type, element_type>::parent(index)];
+            index = Heap<data_type, element_type>::parent(index);
         }
-        (this->data)[index] = elem;
+        Heap<data_type, element_type>::data[index] = elem;
     }
 
     data_type remove() {
-        data_type ret = (this->data)[1].value;
-        element_type pivot = (this->data)[(this->n_data)--];
+        data_type ret = Heap<data_type, element_type>::data[1].value;
+        element_type pivot = Heap<data_type, element_type>::data[Heap<data_type, element_type>::n_data--];
         int index = 1;
         int child_index;
-        while ((child_index = this->higher_child(index)) && pivot > (this->data)[child_index]) {
-            (this->data)[index] = (this->data)[child_index];
+        while ((child_index = Heap<data_type, element_type>::higher_child(index)) && pivot > Heap<data_type, element_type>::data[child_index]) {
+            Heap<data_type, element_type>::data[index] = Heap<data_type, element_type>::data[child_index];
             index = child_index;
         }
-        (this->data)[index] = pivot;
+        Heap<data_type, element_type>::data[index] = pivot;
         return ret;
     }
 };
