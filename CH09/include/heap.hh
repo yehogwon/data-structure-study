@@ -81,7 +81,7 @@ protected:
     int n_data;
     
     int parent(int i) {
-        return (i - 1) / 2;
+        return i / 2;
     }
 
     int higher_child(int i) {
