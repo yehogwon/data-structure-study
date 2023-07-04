@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 function(add_ch ch_name)
-    set(${ch_name}_ROOT ${PROJECT_SOURCE_DIR}/${ch_name} CACHE INTERNAL "")
+    set(${ch_name}_ROOT ${PROJECT_SOURCE_DIR}/${ch_name} CACHE INTERNAL "chroots")
     add_subdirectory(${ch_name})
 endfunction(add_ch)
 
