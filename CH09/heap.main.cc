@@ -2,20 +2,35 @@
 #include "heap.hh"
 
 int main() {
-    Heap<char> heap;
+    std::cout << " ========== Heap with priority ==========" << std::endl;
+    PriorHeap<char> pheap;
 
-    heap.insert('A', 1);
-    heap.insert('B', 2);
-    heap.insert('C', 3);
-    std::cout << heap.remove() << std::endl;
+    pheap.insert('A', 1);
+    pheap.insert('B', 2);
+    pheap.insert('C', 3);
+    std::cout << pheap.remove() << std::endl;
 
-    heap.insert('A', 1);
-    heap.insert('B', 2);
-    heap.insert('C', 3);
-    std::cout << heap.remove() << std::endl;
+    pheap.insert('A', 1);
+    pheap.insert('B', 2);
+    pheap.insert('C', 3);
+    std::cout << pheap.remove() << std::endl;
 
-    while (!heap.empty())
-        std::cout << heap.remove() << std::endl;
+    while (!pheap.empty()) std::cout << pheap.remove() << std::endl;
+
+    std::cout << " ========== Heap with comparison ==========" << std::endl;
+    CompHeap<char> cheap([](const char &a, const char &b) { return (a - b) > 0; });
+
+    cheap.insert('A');
+    cheap.insert('B');
+    cheap.insert('C');
+    std::cout << cheap.remove() << std::endl;
+
+    cheap.insert('A');
+    cheap.insert('B');
+    cheap.insert('C');
+    std::cout << cheap.remove() << std::endl;
+
+    while (!cheap.empty()) std::cout << cheap.remove() << std::endl;
 
     return 0;
 }
