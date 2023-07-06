@@ -1,32 +1,19 @@
 #include <iostream>
+#include <vector>
 #include "sort.basic.hh"
 
 template <typename T>
-void print(T *arr, int n) {
-    for (int i = 0; i < n; i++)
-        std::cout << arr[i] << " ";
-    std::cout << std::endl;
+std::ostream& operator<<(std::ostream &os, const std::vector<T> &vec) {
+    for (int i = 0; i < vec.size(); i++)
+        os << vec[i] << " ";
+    return os;
 }
 
 int main() {
-    {
-        int arr[5] = {5, 3, 2, 4, 1};
-        std::cout << " === Bubble Sort === " << std::endl;
-        bubble_sort(arr, 5);
-        print(arr, 5);
-    }
-    {
-        int arr[5] = {5, 3, 2, 4, 1};
-        std::cout << " === Selection Sort === " << std::endl;
-        selection_sort(arr, 5);
-        print(arr, 5);
-    }
-    {
-        int arr[5] = {5, 3, 2, 4, 1};
-        std::cout << " === Insertion Sort === " << std::endl;
-        insertion_sort(arr, 5);
-        print(arr, 5);
-    }
+    std::vector<int> vec = {5, 3, 2, 4, 1};
+    std::cout << " ::: Bubble Sort ::: " << bubble_sort(vec) << std::endl;
+    std::cout << " ::: Selection Sort ::: " << selection_sort(vec) << std::endl;
+    std::cout << " ::: Insertion Sort ::: " << insertion_sort(vec) << std::endl;
     
     return 0;
 }
