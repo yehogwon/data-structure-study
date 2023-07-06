@@ -27,4 +27,15 @@ void selection_sort(T *arr, int n) {
     }
 }
 
+template <typename T>
+void insertion_sort(T *arr, int n) {
+    for (int i = 1; i < n; i++) {
+        T target = arr[i];
+        int j;
+        for (j = i; j > 0 && arr[j - 1] > target; j--)
+            arr[j] = arr[j - 1];
+        arr[j] = target;
+    }
+}
+
 #endif // __SORT_BASIC_HH__
