@@ -7,7 +7,7 @@ template <typename T>
 using heap = CompHeap<T>;
 
 template <typename T>
-std::vector<T> heap_sort(std::vector<T> vec) {
+std::vector<T> heap_sort(const std::vector<T> &vec) {
     heap<T> heap_([](const T &a, const T &b) { return a < b; });
     for (const T &e : vec) heap_.insert(e);
 
@@ -31,7 +31,7 @@ std::vector<T> merge(const std::vector<T> &left, const std::vector<T> &right) {
 }
 
 template <typename T>
-std::vector<T> merge_sort(std::vector<T> vec) {
+std::vector<T> merge_sort(const std::vector<T> &vec) {
     if (vec.size() <= 1) return vec;
     int mid = vec.size() / 2;
     return merge(merge_sort(std::vector<T>(vec.begin(), vec.begin() + mid)), merge_sort(std::vector<T>(vec.begin() + mid, vec.end())));

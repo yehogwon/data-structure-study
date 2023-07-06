@@ -11,36 +11,39 @@ void swap(T &a, T &b) {
 }
 
 template <typename T>
-std::vector<T> bubble_sort(std::vector<T> vec) {
-    for (int i = 0; i < vec.size(); i++)
-        for (int j = 0; j < vec.size() - i - 1; j++)
-            if (vec[j] > vec[j + 1])
-                swap(vec[j], vec[j + 1]);
-    return vec;
+std::vector<T> bubble_sort(const std::vector<T> &vec) {
+    std::vector<T> sorted(vec);
+    for (int i = 0; i < sorted.size(); i++)
+        for (int j = 0; j < sorted.size() - i - 1; j++)
+            if (sorted[j] > sorted[j + 1])
+                swap(sorted[j], sorted[j + 1]);
+    return sorted;
 }
 
 template <typename T>
-std::vector<T> selection_sort(std::vector<T> vec) {
-    for (int i = 0; i < vec.size() - 1; i++) {
+std::vector<T> selection_sort(const std::vector<T> &vec) {
+    std::vector<T> sorted(vec);
+    for (int i = 0; i < sorted.size() - 1; i++) {
         int min = i;
-        for (int j = i + 1; j < vec.size(); j++)
-            if (vec[j] < vec[min])
+        for (int j = i + 1; j < sorted.size(); j++)
+            if (sorted[j] < sorted[min])
                 min = j;
-        if (i != min) swap(vec[i], vec[min]);
+        if (i != min) swap(sorted[i], sorted[min]);
     }
-    return vec;
+    return sorted;
 }
 
 template <typename T>
-std::vector<T> insertion_sort(std::vector<T> vec) {
-    for (int i = 1; i < vec.size(); i++) {
-        T target = vec[i];
+std::vector<T> insertion_sort(const std::vector<T> &vec) {
+    std::vector<T> sorted(vec);
+    for (int i = 1; i < sorted.size(); i++) {
+        T target = sorted[i];
         int j;
-        for (j = i; j > 0 && vec[j - 1] > target; j--)
-            vec[j] = vec[j - 1];
-        vec[j] = target;
+        for (j = i; j > 0 && sorted[j - 1] > target; j--)
+            sorted[j] = sorted[j - 1];
+        sorted[j] = target;
     }
-    return vec;
+    return sorted;
 }
 
 #endif // __SORT_BASIC_HH__
