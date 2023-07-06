@@ -1,5 +1,5 @@
-#ifndef __BASIC_SORT_HH__
-#define __BASIC_SORT_HH__
+#ifndef __SORT_BASIC_HH__
+#define __SORT_BASIC_HH__
 
 template <typename T>
 void swap(T &a, T &b) {
@@ -27,4 +27,4 @@ void selection_sort(T *arr, int n) {
     }
 }
 
-#endif // __BASIC_SORT_HH__
+#endif // __SORT_BASIC_HH__
