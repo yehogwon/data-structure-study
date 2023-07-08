@@ -18,6 +18,13 @@ std::vector<T> heap_sort(const std::vector<T> &vec) {
 }
 
 template <typename T>
+void heap_sort_inplace(std::vector<T> &vec) {
+    heap<T> heap_([](const T &a, const T &b) { return a < b; });
+    while (!vec.empty()) heap_.insert(vec.back()), vec.pop_back();
+    while (!heap_.empty()) vec.push_back(heap_.remove());
+}
+
+template <typename T>
 std::vector<T> merge(const std::vector<T> &left, const std::vector<T> &right) {
     if (left.empty()) return right;
     if (right.empty()) return left;

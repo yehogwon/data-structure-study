@@ -26,7 +26,7 @@ int main() {
         {"Bubble Sort", bubble_sort_inplace<int>},
         {"Selection Sort", selection_sort_inplace<int>},
         {"Insertion Sort", insertion_sort_inplace<int>},
-        // {"Heap Sort", heap_sort_inplace<int>},
+        {"Heap Sort", heap_sort_inplace<int>},
         // {"Merge Sort", merge_sort_inplace<int>},
         // {"Quick Sort", quick_sort_inplace<int>}
     };
