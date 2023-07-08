@@ -1,6 +1,7 @@
 #ifndef __SORT_ADVANCE_HH__
 #define __SORT_ADVANCE_HH__
 
+#include "sort.basic.hh"
 #include "heap.hh"
 
 template <typename T>
@@ -35,6 +36,32 @@ std::vector<T> merge_sort(const std::vector<T> &vec) {
     if (vec.size() <= 1) return vec;
     int mid = vec.size() / 2;
     return merge(merge_sort(std::vector<T>(vec.begin(), vec.begin() + mid)), merge_sort(std::vector<T>(vec.begin() + mid, vec.end())));
+}
+
+template <typename T>
+int partition(std::vector<T> &vec) {
+    const T &pivot = vec[0];
+    int low = 1, high = vec.size() - 1;
+    while (low <= high) {
+        while (pivot >= vec[low] && low <= vec.size() - 1) low++;
+        while (pivot <= vec[high] && high >= 1) high--;
+        if (low <= high) swap(vec[low], vec[high]);
+    }
+    if (high != 0) swap(vec[0], vec[high]);
+    return high;
+}
+
+template <typename T>
+std::vector<T> quick_sort(const std::vector<T> &vec__) {
+    if (vec__.size() <= 1) return vec__;
+    std::vector<T> vec = vec__;
+    int pivot_index = partition(vec);
+    const std::vector<T> &&left = quick_sort(std::vector<T>(vec.begin(), vec.begin() + pivot_index));
+    const std::vector<T> &&right = quick_sort(std::vector<T>(vec.begin() + pivot_index + 1, vec.end()));
+    std::vector<T> sorted = left;
+    sorted.push_back(vec[pivot_index]);
+    sorted.insert(sorted.end(), right.begin(), right.end());
+    return sorted;
 }
 
 #endif // __SORT_ADVANCE_HH__

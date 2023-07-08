@@ -11,12 +11,13 @@ std::ostream& operator<<(std::ostream &os, const std::vector<T> &vec) {
 }
 
 int main() {
-    std::vector<int> vec = {5, 3, 2, 4, 1};
+    std::vector<int> vec = {7, 11, 3, 15, 19, 2, 6, 4, 13, 18, 5, 20, 14, 10, 9, 12, 16, 1, 17, 8};
     std::cout << " ::: Bubble Sort ::: " << bubble_sort(vec) << std::endl;
     std::cout << " ::: Selection Sort ::: " << selection_sort(vec) << std::endl;
     std::cout << " ::: Insertion Sort ::: " << insertion_sort(vec) << std::endl;
     std::cout << " ::: Heap Sort ::: " << heap_sort(vec) << std::endl;
     std::cout << " ::: Merge Sort ::: " << merge_sort(vec) << std::endl;
+    std::cout << " ::: Quick Sort ::: " << quick_sort(vec) << std::endl;
     
     return 0;
 }
