@@ -43,8 +43,8 @@ int partition(std::vector<T> &vec) {
     const T &pivot = vec[0];
     int low = 1, high = vec.size() - 1;
     while (low <= high) {
-        while (pivot > vec[low]) low++;
-        while (pivot < vec[high]) high--;
+        while (pivot >= vec[low] && low <= vec.size() - 1) low++;
+        while (pivot <= vec[high] && high >= 1) high--;
         if (low <= high) swap(vec[low], vec[high]);
     }
     if (high != 0) swap(vec[0], vec[high]);
