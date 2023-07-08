@@ -17,6 +17,7 @@ int main() {
     std::cout << " ::: Insertion Sort ::: " << insertion_sort(vec) << std::endl;
     std::cout << " ::: Heap Sort ::: " << heap_sort(vec) << std::endl;
     std::cout << " ::: Merge Sort ::: " << merge_sort(vec) << std::endl;
+    std::cout << " ::: Quick Sort ::: " << quick_sort(vec) << std::endl;
     
     return 0;
 }
