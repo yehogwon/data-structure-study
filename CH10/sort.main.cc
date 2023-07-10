@@ -1,9 +1,33 @@
 #include <iostream>
+#include <algorithm>
 #include <iomanip>
 #include <vector>
 #include <functional>
 #include "sort.basic.hh"
 #include "sort.advance.hh"
+
+struct Int : public RadixElement {
+    int val;
+    
+    Int() : val(0) {}
+    Int(int val) : val(val) {}
+
+    int length() const override {
+        int val__ = val, len = 0;
+        while (val__ > 0) val__ /= 10, len++;
+        return len;
+    }
+
+    int operator[](int index) const override {
+        int val__ = val, len = length();
+        for (int i = 0; i < len - index - 1; i++) val__ /= 10;
+        return val__ % 10;
+    }
+
+    operator int() const override {
+        return val;
+    }
+};
 
 template <typename T>
 std::ostream& operator<<(std::ostream &os, const std::vector<T> &vec) {
@@ -42,6 +66,11 @@ int main() {
         alg.second(vec_);
         std::cout << " ::: " << std::setw(15) << alg.first << " ::: " << vec_ << std::endl;
     }
+
+    std::cout << " ================== radix sort ================== " << std::endl;
+    std::vector<Int> vec_ = std::vector<Int>(vec.begin(), vec.end());
+    vec_ = radix_sort(vec_);
+    std::cout << " ::: " << std::setw(15) << "Radix Sort" << " ::: " << vec_ << std::endl;
     
     return 0;
 }
