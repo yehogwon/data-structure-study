@@ -69,8 +69,10 @@ int main() {
 
     std::cout << " ================== radix sort ================== " << std::endl;
     std::vector<Int> vec_ = std::vector<Int>(vec.begin(), vec.end());
-    vec_ = radix_sort(vec_);
-    std::cout << " ::: " << std::setw(15) << "Radix Sort" << " ::: " << vec_ << std::endl;
+    std::vector<Int> vec_sorted = radix_sort(vec_);
+    std::cout << " ::: " << std::setw(25) << "Radix Sort (out-of-place)" << " ::: " << vec_sorted << std::endl;
+    radix_sort_inplace(vec_);
+    std::cout << " ::: " << std::setw(25) << "Radix Sort (in-place)" << " ::: " << vec_ << std::endl;
     
     return 0;
 }

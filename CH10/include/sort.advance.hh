@@ -108,4 +108,26 @@ std::vector<T> radix_sort(const std::vector<T> &vec__) {
     return sorted;
 }
 
+template <typename T>
+void radix_sort_inplace(std::vector<T> &vec) {
+    queue<T> buckets[RADIX_BUCKET_SIZE];
+
+    int max_length = 0;
+    for (const T &e : vec) {
+        int length = e.length();
+        max_length = length > max_length ? length : max_length;
+    }
+
+    for (int pos = 0; pos < max_length; pos++) {
+        for (const T &e : vec) {
+            int index = e.length() - pos - 1;
+            int radix = index >= 0 ? static_cast<int>(e[index]) : static_cast<int>(T());
+            buckets[radix].enqueue(e);
+        }
+
+        for (int i = 0, j = 0; i < RADIX_BUCKET_SIZE; i++) 
+            while (!buckets[i].empty()) vec[j++] = buckets[i].dequeue();
+    }
+}
+
 #endif // __SORT_ADVANCE_HH__
