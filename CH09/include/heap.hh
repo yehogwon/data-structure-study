@@ -3,7 +3,7 @@
 
 #include <functional>
 
-const int MAX_LENGTH = 1000;
+const int HEAP_MAX_LENGTH = 1000;
 
 template <typename T>
 struct PriorityElement {
@@ -77,7 +77,7 @@ private:
         return right(i) > n_data;
     }
 protected: 
-    element_type data[MAX_LENGTH];
+    element_type data[HEAP_MAX_LENGTH];
     int n_data;
     
     int parent(int i) {

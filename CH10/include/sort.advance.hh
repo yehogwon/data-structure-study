@@ -3,9 +3,15 @@
 
 #include "sort.basic.hh"
 #include "heap.hh"
+#include "queue.hh"
 
 template <typename T>
 using heap = CompHeap<T>;
+
+template <typename T>
+using queue = ArrayQueue<T>;
+
+const int RADIX_BUCKET_SIZE = 10;
 
 template <typename T>
 std::vector<T> heap_sort(const std::vector<T> &vec) {
@@ -15,6 +21,13 @@ std::vector<T> heap_sort(const std::vector<T> &vec) {
     std::vector<T> sorted;
     while (!heap_.empty()) sorted.push_back(heap_.remove());
     return sorted;
+}
+
+template <typename T>
+void heap_sort_inplace(std::vector<T> &vec) {
+    heap<T> heap_([](const T &a, const T &b) { return a < b; });
+    while (!vec.empty()) heap_.insert(vec.back()), vec.pop_back();
+    while (!heap_.empty()) vec.push_back(heap_.remove());
 }
 
 template <typename T>
@@ -61,6 +74,37 @@ std::vector<T> quick_sort(const std::vector<T> &vec__) {
     std::vector<T> sorted = left;
     sorted.push_back(vec[pivot_index]);
     sorted.insert(sorted.end(), right.begin(), right.end());
+    return sorted;
+}
+
+struct RadixElement {
+    virtual int length() const = 0;
+    virtual int operator[](int index) const = 0;
+    virtual operator int() const = 0;
+};
+
+template <typename T>
+std::vector<T> radix_sort(const std::vector<T> &vec__) {
+    queue<T> buckets[RADIX_BUCKET_SIZE];
+
+    int max_length = 0;
+    for (const T &e : vec__) {
+        int length = e.length();
+        max_length = length > max_length ? length : max_length;
+    }
+
+    std::vector<T> sorted = vec__;
+    for (int pos = 0; pos < max_length; pos++) {
+        for (const T &e : sorted) {
+            int index = e.length() - pos - 1;
+            int radix = index >= 0 ? static_cast<int>(e[index]) : static_cast<int>(T());
+            buckets[radix].enqueue(e);
+        }
+
+        for (int i = 0, j = 0; i < RADIX_BUCKET_SIZE; i++) 
+            while (!buckets[i].empty()) sorted[j++] = buckets[i].dequeue();
+    }
+    
     return sorted;
 }
 
