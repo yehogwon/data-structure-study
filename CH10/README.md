@@ -1,1 +1,3 @@
 # Sorting
+
+In this chapter, we deal with some sorting algorithms containing the following: bubble sort, selection sort, insertion sort, merge sort, heap sort, quick sort, and additionally, radix sort. The textbook implement these algorithms in-place since it uses C array to store and pass the data. However, I use C++ and `std::vector`. Therefore, I implement these algorithms in a more C++ way, both in-place and out-of-place. 
