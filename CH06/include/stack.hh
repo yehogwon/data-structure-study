@@ -3,12 +3,12 @@
 
 #include <stdexcept>
 
-const int MAX_LENGTH = 1000;
+const int HEAP_MAX_LENGTH = 1000;
 
 template <typename T>
 class ArrayStack {
 private: 
-    T data[MAX_LENGTH];
+    T data[HEAP_MAX_LENGTH];
     int top_index;
 public: 
     ArrayStack() : top_index(-1) {}

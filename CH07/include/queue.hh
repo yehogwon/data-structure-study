@@ -3,16 +3,16 @@
 
 #include <stdexcept>
 
-const int MAX_LENGTH = 1000;
+const int QUEUE_MAX_LENGTH = 1000;
 
 template <typename T>
 class ArrayQueue {
 private: 
-    T data[MAX_LENGTH];
+    T data[QUEUE_MAX_LENGTH];
     int front, rear;
     
     int index(int i) {
-        return i % MAX_LENGTH;
+        return i % QUEUE_MAX_LENGTH;
     }
 
     int& next(int &i) {
