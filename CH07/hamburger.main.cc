@@ -50,7 +50,7 @@ int main() {
     std::cout << " - Bulgogi Burger: " << n_bulgogi << std::endl;
     std::cout << " - Double Burger: " << n_double << std::endl;
     std::cout << " - Total: " << n_cheeze + n_bulgogi + n_double << std::endl;
-    std::cout << " - Waiting room size for the simulation: " << HEAP_MAX_LENGTH << std::endl;
+    std::cout << " - Waiting room size for the simulation: " << QUEUE_MAX_LENGTH << std::endl;
 
     return 0;
 }
