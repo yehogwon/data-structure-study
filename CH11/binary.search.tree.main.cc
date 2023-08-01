@@ -20,5 +20,19 @@ int main() {
         }
     }
 
+    bst.remove(0);
+    bst.remove(7);
+    bst.remove(8);
+
+    std::cout << std::endl;
+    for (int key : {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}) {
+        try {
+            auto &item = bst.search(key);
+            std::cout << "[      ITEM FOUND     ] " << item.key << " " << item.value << std::endl;
+        } catch (...) {
+            std::cout << "[  ITEM IS NOT FOUND  ] " << key << std::endl;
+        }
+    }
+
     return 0;
 }

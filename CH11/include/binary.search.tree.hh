@@ -19,6 +19,29 @@ class BinarySearchTree {
     using nodeptr = node<item_type>*;
 private: 
     nodeptr root;
+
+    nodeptr& search_(const key_type &key) {
+        nodeptr cur = root;
+        while (cur) {
+            if (key == cur->data.key) return cur;
+            if (key < cur->data.key) cur = cur->left;
+            else cur = cur->right;
+        }
+        throw std::runtime_error("Key not found");
+    }
+
+    nodeptr& min(const nodeptr &root) {
+        nodeptr cur = root;
+        while (cur->left) cur = cur->left;
+        return cur;
+    }
+
+    nodeptr& max(const nodeptr &root) {
+        nodeptr cur = root;
+        while (cur->right) cur = cur->right;
+        return cur;
+    }
+
 public: 
     BinarySearchTree() : root(nullptr) {}
 
@@ -50,13 +73,24 @@ public:
     }
 
     item_type& search(const key_type &key) {
-        nodeptr cur = root;
-        while (cur) {
-            if (key == cur->data.key) return cur->data;
-            if (key < cur->data.key) cur = cur->left;
-            else cur = cur->right;
+        return search_(key)->data;
+    }
+
+    // FIXME: remove function is not working properly
+    void remove(const key_type &key) {
+        nodeptr &del = search_(key);
+        nodeptr tmp = del;
+
+        if (del->left && del->right) { // two children
+            nodeptr target = min(del->right);
+            del = target;
+        } else if (del->left) { // left only
+            del = del->left;
+        } else if (del->right) { // right only
+            del = del->right;
         }
-        throw std::runtime_error("Key not found");
+        
+        delete tmp;
     }
 };
 
