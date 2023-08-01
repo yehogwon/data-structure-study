@@ -66,6 +66,7 @@ int main() {
         alg.second(vec_);
         std::cout << " ::: " << std::setw(15) << alg.first << " ::: " << vec_ << std::endl;
     }
+    std::cout << std::endl;
 
     std::cout << " ================== radix sort ================== " << std::endl;
     std::vector<Int> vec_ = std::vector<Int>(vec.begin(), vec.end());
